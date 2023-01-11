@@ -2,44 +2,33 @@
 <%- include('includes/navbar.ejs') %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-2"></div>
+        <div class="col-lg-2">
+
+        </div>
         <div class="col-lg-8">
             <h1 class="text-center mt-3">Crie seu usuario</h1>
             <p class="text-center lead">Se já tiver um usuario criado só fazer o login!</p>
-            <div class="row mt-5">
-                <div class="col-lg-6">
-                    <h4>Faça seu Cadastro:</h4>
-                    <p>Se ainda não possui uma conta, preencha o formulário abaixo.</p>
-                    <form action="/login/register" method="post">
-                        <div class="form-group mb-2">
-                          <label>Email:</label>
-                          <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
-                        </div>
-                        <div class="form-group mb-2">
-                          <label>Senha:</label>
-                          <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Criar seu cadastro</button>
-                      </form>
-                </div>
-                <div class="col-lg-6">
+            
+                <div class="col-lg">
                     <h4>Entre com seu usuario:</h4>
                     <p>Faça login com a sua conta.</p>
-                    <form method="post">
-                        <div class="form-group mb-2">
-                          <label>Email:</label>
-                          <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
-                        </div>
-                        <div class="form-group mb-2">
-                          <label>Senha:</label>
-                          <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <p>Ainda não tem uma conta? <a href="/Register">Registre-se</a></p>
+                    <form action="/login/enter" method="post">
+                            <div class="form-group mb-2">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
+                            </div>
+                            <div class="form-group mb-2">
+                            <label>Senha:</label>
+                            <input type="password" class="form-control" name="password" id="password"  placeholder="Digite sua senha">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Entrar no sistema</button>
                       </form>
-                </div>
             </div>
         </div>
-        <div class="col-lg-2"></div>
+        <div class="col-lg-2">
+
+        </div>
     </div>
 </div>
 
