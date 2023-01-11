@@ -8,4 +8,15 @@
     </div>
 <% } %>
 
+<% if (success.length > 0){ %>
+    <div class="col my-3">
+        <div class="alert alert-success">
+            <% success.forEach(suc => { %>
+                <%= suc %> <br>
+            <%})%>
+        </div>
+    </div>
+<% } %>
+
+
 

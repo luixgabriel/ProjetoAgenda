@@ -19,14 +19,19 @@ class User {
             if(loginModel.errors.length > 0){
                 
                 req.flash('errors', loginModel.errors)
-               
-
                 req.session.save(()=>{
                     return res.redirect('back')
                 })
                 
                 return
             }
+
+            req.flash('success', 'Seu usuário foi cadastrado com sucesso')
+                req.session.save(()=>{
+                    return res.redirect('back')
+            })
+            return
+            
     } catch (error) {
         console.log(error)
         return res.render('404')
