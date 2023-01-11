@@ -4,6 +4,7 @@ var app = express()
 var router = require("./routes/routes")
 var ejs = require('ejs')
 var mongoose = require('mongoose')
+require('dotenv').config()
 const {Message} = require('./middlewares/middlewares')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -11,7 +12,7 @@ const flash = require("connect-flash")
 
 const sessionOptions = session({
     secret: '122124',
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://luixgabriel:ufcd2013@myfirstserver.dxw2otd.mongodb.net/test' }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGOURL }),
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -23,7 +24,7 @@ const sessionOptions = session({
 
 
 mongoose.set('strictQuery', true)
-mongoose.connect("mongodb+srv://luixgabriel:ufcd2013@myfirstserver.dxw2otd.mongodb.net/test").then(()=>{
+mongoose.connect(process.env.MONGOURL).then(()=>{
     console.log('conectado ao banco')
 })
 
