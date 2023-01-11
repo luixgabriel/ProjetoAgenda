@@ -1,7 +1,7 @@
-class User {
+class Home {
     async teste (req,res){
         res.render('index.ejs')
     }
 }
 
-module.exports = new User()
+module.exports = new Home()

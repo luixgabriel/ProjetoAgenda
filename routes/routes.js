@@ -1,10 +1,10 @@
 var express = require("express");
 var app = express();
 var router = express.Router();
-var UserControler = require('../controllers/UserController')
+var HomeControler = require('../controllers/HomeController')
 
 
-router.get('/', UserControler.teste)
+router.get('/', HomeControler.teste)
 
 
 
