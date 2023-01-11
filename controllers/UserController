@@ -5,22 +5,39 @@ class User {
     
         res.render("indexUser")
     }
-    async register(req,res){
-        req.flash('oi', 'ola mundo')
-        console.log(req.flash('oi'))
+    async register (req,res){
+
         res.render('register')
+    }
+    async registerRec(req,res){
+       
+        try {
+            var {email, password} = req.body
+            
+            var result = await loginModel.register(email, password)
+            
+            if(loginModel.errors.length > 0){
+                
+                req.flash('errors', loginModel.errors)
+               
+
+                req.session.save(()=>{
+                    return res.redirect('back')
+                })
+                
+                return
+            }
+    } catch (error) {
+        console.log(error)
+        return res.render('404')
+        
+    }
+
+    
     }
 
     async login(req,res){
-        try {
-                var {email, password} = req.body
-                var result = await loginModel.register(email, password)
-                console.log(result)
-        } catch (error) {
-            console.log(error)
-            
-        }
-        
+      
     }
 }
 

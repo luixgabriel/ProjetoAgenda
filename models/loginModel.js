@@ -19,9 +19,8 @@ class login {
         this.validate(email,password)
 
         console.log(this.errors)
-        
         if(this.errors.length > 0){
-            this.errors = []
+            // this.errors = []
             return {status: false, msg: "ERRO"}
         }else{
             try {
@@ -41,7 +40,10 @@ class login {
     }
 
     async validate(email, password){
-
+        if(this.errors.length > 0){
+            this.errors = []
+        }
+        
         if(!validator.isEmail(email)){
             this.errors.push('E-mail inválido')
         }

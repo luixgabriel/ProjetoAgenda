@@ -4,6 +4,7 @@ var app = express()
 var router = require("./routes/routes")
 var ejs = require('ejs')
 var mongoose = require('mongoose')
+const {Message} = require('./middlewares/middlewares')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash")
@@ -26,13 +27,16 @@ mongoose.connect("mongodb+srv://luixgabriel:ufcd2013@myfirstserver.dxw2otd.mongo
     console.log('conectado ao banco')
 })
 
+
 app.use(sessionOptions)
 app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(Message)
 app.use("/",router);
 // app.use(express.static('public'));
 app.set('view engine', 'ejs')
+
 
 
 app.listen(8688,() => {

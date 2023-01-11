@@ -9,14 +9,15 @@
                 <div class="col-lg-6">
                     <h4>Faça seu Cadastro:</h4>
                     <p>Se ainda não possui uma conta, preencha o formulário abaixo.</p>
-                    <form action="/login/register" method="post">
+                    <form action="/registerRec" method="post">
                         <div class="form-group mb-2">
+                          <%- include('includes/msgs.ejs') %>
                           <label>Email:</label>
                           <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
                         </div>
                         <div class="form-group mb-2">
                           <label>Senha:</label>
-                          <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                          <input type="password" class="form-control" name="password" id="password" placeholder="Digite sua senha">
                         </div>
                         <button type="submit" class="btn btn-primary">Criar seu cadastro</button>
                       </form>
