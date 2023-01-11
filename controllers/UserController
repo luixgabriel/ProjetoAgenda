@@ -1,0 +1,7 @@
+class User {
+    async index(req,res){
+        res.render("indexUser")
+    }
+}
+
+module.exports = new User()

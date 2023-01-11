@@ -5,9 +5,13 @@ var router = require("./routes/routes")
 var ejs = require('ejs')
 var mongoose = require('mongoose')
 
+
+mongoose.set('strictQuery', true)
 mongoose.connect("mongodb+srv://luixgabriel:ufcd2013@myfirstserver.dxw2otd.mongodb.net/test").then(()=>{
-    console.log('conectado ao servidor')
+    console.log('conectado ao banco')
 })
+
+
  
 
 app.use(bodyParser.urlencoded({ extended: false }))
