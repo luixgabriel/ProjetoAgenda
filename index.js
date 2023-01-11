@@ -4,6 +4,21 @@ var app = express()
 var router = require("./routes/routes")
 var ejs = require('ejs')
 var mongoose = require('mongoose')
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const flash = require("connect-flash")
+
+const sessionOptions = session({
+    secret: '122124',
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://luixgabriel:ufcd2013@myfirstserver.dxw2otd.mongodb.net/test' }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        httpOnly: true
+    }
+})
+
 
 
 mongoose.set('strictQuery', true)
@@ -11,9 +26,8 @@ mongoose.connect("mongodb+srv://luixgabriel:ufcd2013@myfirstserver.dxw2otd.mongo
     console.log('conectado ao banco')
 })
 
-
- 
-
+app.use(sessionOptions)
+app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use("/",router);

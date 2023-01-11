@@ -16,22 +16,41 @@ class login {
         this.errors = []
     }
     async register(email, password){
-        this.validate()
+        this.validate(email,password)
+
         console.log(this.errors)
+        
         if(this.errors.length > 0){
             this.errors = []
-            return {msg: "ERRO"}
-            
+            return {status: false, msg: "ERRO"}
+        }else{
+            try {
+                var user = await loginModel.create({email: email,password: password})
+                if(user){
+                    return {status:true, msg:'Seu usuario foi criado com sucesso'}
+                }
+            } catch (error) {
+                console.log(error)
+                return
+            }
         }
+
+       
+            
+        
     }
 
     async validate(email, password){
-       if(password = !String){
-        this.errors.push('que porra')
-       }
-        if(!password.length < 3 || password.length >= 50){
+
+        if(!validator.isEmail(email)){
+            this.errors.push('E-mail inválido')
+        }
+
+   
+        if(password.length < 3 || password.length > 50){
             this.errors.push('A senha precisa ter entre 3 e 50 caracteres')
         }
+          
    
     }
 

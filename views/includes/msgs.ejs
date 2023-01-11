@@ -1,0 +1,10 @@
+<% if (errors){ %>
+
+<% } %>
+<div class="col my-3">
+    <div class="alert alert-danger">
+        <% erros.forEach(erro => { %>
+            <%= erro %> <br>
+        <%})%>
+    </div>
+</div>
