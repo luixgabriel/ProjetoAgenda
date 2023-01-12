@@ -14,7 +14,8 @@
                     <p>Faça login com a sua conta.</p>
                     <p>Ainda não tem uma conta? <a href="/Register">Registre-se</a></p>
                   
-                    <form action="/login/enter" method="post">
+                    <form action="/login" method="post">
+                        <%- include('includes/msgs.ejs') %>
                             <div class="form-group mb-2">
                             <label>Email:</label>
                             <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">

@@ -10,6 +10,7 @@ router.get('/', HomeControler.teste)
 router.get('/user', UserController.index)
 router.get('/Register', UserController.register)
 router.post('/RegisterRec', UserController.registerRec)
+router.post('/login', UserController.login)
 
 
 

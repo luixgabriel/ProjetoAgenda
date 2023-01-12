@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+const bcrypt = require('bcrypt')
+
 
 
 const loginSchema = new mongoose.Schema({
@@ -17,26 +19,44 @@ class login {
     }
     async register(email, password){
         this.validate(email,password)
-
-        console.log(this.errors)
+        await this.userExists(email)
         if(this.errors.length > 0){
-            // this.errors = []
             return {status: false, msg: "ERRO"}
         }else{
-            try {
-                var user = await loginModel.create({email: email,password: password})
+           
+                
+                var hash = await bcrypt.hash(password, 12)
+                var user = await loginModel.create({email: email,password: hash})
                 if(user){
                     return {status:true, msg:'Seu usuario foi criado com sucesso'}
                 }
-            } catch (error) {
-                console.log(error)
+                
                 return
-            }
+            
         }
 
-       
-            
-        
+    }
+
+    async login(email, password) {
+        this.validate(email,password)
+
+        if(this.errors.length > 0){
+            return {status: false, msg: "ERRO"}
+        }
+
+        var user = await loginModel.findOne({email: email})
+
+        if(!user){
+            this.errors.push('Usuário ou senha incorreta.')
+            return
+        }
+
+        if(!bcrypt.compareSync(password, user.password)){
+            this.errors.push('Senha inválida')
+            return
+        }
+                  
+        return
     }
 
     async validate(email, password){
@@ -54,6 +74,13 @@ class login {
         }
           
    
+    }
+
+    async userExists(email){
+        var user = await loginModel.findOne({email: email})
+        if(user){
+            this.errors.push('Esse email já está cadastrado, Digite outro.')
+        }
     }
 
 }

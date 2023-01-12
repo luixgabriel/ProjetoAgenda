@@ -9,6 +9,7 @@ const {Message} = require('./middlewares/middlewares')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash")
+const bcrypt = require('bcrypt')
 
 const sessionOptions = session({
     secret: '122124',

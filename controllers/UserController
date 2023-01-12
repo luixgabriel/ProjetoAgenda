@@ -42,6 +42,27 @@ class User {
     }
 
     async login(req,res){
+        var { email, password } = req.body
+
+        try {
+            await loginModel.login(email,password)
+            if(loginModel.errors.length > 0){
+                req.flash('errors', loginModel.errors)
+                req.session.save(()=>{
+                    return res.redirect('back')
+                })
+                    return
+            }
+            
+            req.flash('success', 'Seu usuário foi cadastrado com sucesso')
+            req.session.save(()=>{
+                return res.redirect('back')
+            })
+
+        }catch(error){
+            console.log(error)
+            return
+        }
       
     }
 }
