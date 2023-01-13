@@ -3,6 +3,7 @@ const loginModel = require('../models/loginModel')
 class User {
     async index(req,res){
     
+       if(req.session.user) return res.render('index')
         res.render("indexUser")
     }
     async register (req,res){
@@ -45,7 +46,7 @@ class User {
         var { email, password } = req.body
 
         try {
-            await loginModel.login(email,password)
+            var result = await loginModel.login(email,password)
             if(loginModel.errors.length > 0){
                 req.flash('errors', loginModel.errors)
                 req.session.save(()=>{
@@ -54,7 +55,9 @@ class User {
                     return
             }
             
-            req.flash('success', 'Seu usuário foi cadastrado com sucesso')
+            req.session.user = result
+            
+            req.flash('success', 'Login efetuado com sucesso')
             req.session.save(()=>{
                 return res.redirect('back')
             })
@@ -64,6 +67,11 @@ class User {
             return
         }
       
+    }
+
+    async logout(req,res){
+        req.session.destroy()
+        res.redirect('/user')
     }
 }
 

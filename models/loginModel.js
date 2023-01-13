@@ -55,8 +55,8 @@ class login {
             this.errors.push('Senha inválida')
             return
         }
-                  
-        return
+        
+        return user
     }
 
     async validate(email, password){

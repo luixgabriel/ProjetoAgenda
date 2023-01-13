@@ -1,0 +1,48 @@
+<%- include('includes/header.ejs') %>
+<%- include('includes/navbar.ejs') %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-8">
+            <h1 class="text-center mt-3">Meus contatos</h1>
+           
+            
+                <div class="col-lg">
+                    <h4>Contato:</h4>
+                    <p>Crie ou edite seus contatos abaixo.</p>
+                   
+                  
+                    <form action="/contatoCreate" method="post">
+                        <%- include('includes/msgs.ejs') %>
+                            <div class="form-group mb-2">
+                                <label>Nome:</label>
+                                <input type="text" value="<%= contato.nome %>" class="form-control" name="nome" id="nome" placeholder="Digite o nome:">
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label>Sobrenome:</label>
+                                <input type="text" value="<%= contato.sobrenome %>" class="form-control" name="sobrenome" id="sobrenome" placeholder="Digite o sobrenome:">
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label>Email:</label>
+                                <input type="email" value="<%= contato.email %>" class="form-control" name="email" id="password"  placeholder="Digite o Email:">
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label>Telefone:</label>
+                                <input type="tel" value="<%= contato.tel %>" class="form-control" name="tel" id="password"  placeholder="Digite o Telefone:">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Adicionar Contato</button>
+                      </form>
+            </div>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+</div>
+
+<%- include('includes/footer.ejs') %>
