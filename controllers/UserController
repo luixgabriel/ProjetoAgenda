@@ -1,9 +1,13 @@
 const loginModel = require('../models/loginModel')
+const contatoModel = require('../models/contatoModel')
 
 class User {
     async index(req,res){
     
-       if(req.session.user) return res.render('index')
+       if(req.session.user){
+        const contatos = await contatoModel.getContatos()
+         return res.render('index', {contatos: contatos})
+       } 
         res.render("indexUser")
     }
     async register (req,res){

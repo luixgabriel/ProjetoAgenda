@@ -9,6 +9,7 @@
             <div class="row">
                 <%- include('includes/msgs.ejs') %>
             </div>
+            <% if(contatos.length > 0){%>
             <div class="responsive-table">
                 <table class="table my-3">
                     <% contatos.forEach(contato => { %>
@@ -18,11 +19,14 @@
                         <td><%=contato.tel%></td>
                         <td><%=contato.email%></td>
                         <td><a href="/contatos/index/<%=contato.id%>">Editar</a></td>
-                        <td><a class="text-danger" href="/contatos/delete/<%=contato.id%>">Apagar</a></td>
+                        <td><a class="text-danger" href="/contato/delete/<%=contato.id%>">Apagar</a></td>
                     </tr>
                     <% }) %>
                 </table>
             </div>
+        <% } else { %>
+                <p class="lead text-center">Não existem contatos na sua agenda.</p>
+        <% } %>
         </div>
         <div class="col-lg-2"></div>
     </div>

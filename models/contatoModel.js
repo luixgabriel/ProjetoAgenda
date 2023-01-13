@@ -77,6 +77,11 @@ class Contato {
         return
     }
 
+    async delete(id){
+        var contatos = await contatoModel.findByIdAndDelete(id)
+        return contatos
+    }
+
     
 }
    

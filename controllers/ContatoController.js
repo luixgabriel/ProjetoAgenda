@@ -79,6 +79,26 @@ class Contato {
         
     }
 
+    async delete(req,res){
+        var {id} = req.params
+        if(!id){
+            return res.render('404')
+        }
+
+        var contato = await contatoModel.delete(id)
+        if(!contato){
+            return res.render('404')
+        }
+
+        
+        req.flash('success', 'Contato apagado com sucesso')
+        req.session.save(()=>{
+            return res.redirect('back')
+        })
+
+        return
+    }
+
     
 }
 

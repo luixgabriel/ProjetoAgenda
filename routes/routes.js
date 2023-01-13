@@ -1,14 +1,13 @@
 var express = require("express");
 var app = express();
 var router = express.Router();
-var HomeControler = require('../controllers/HomeController')
 var UserController = require('../controllers/UserController')
 var ContatoController = require('../controllers/ContatoController')
 const {loginRequire} = require('../middlewares/middlewares')
 
 
 
-router.get('/', HomeControler.teste)
+router.get('/', UserController.index)
 router.get('/user', UserController.index)
 router.get('/Register', UserController.register)
 router.get('/logout', UserController.logout)
@@ -20,6 +19,7 @@ router.get('/contatos', loginRequire, ContatoController.index)
 router.get('/contatos/index/:id', loginRequire, ContatoController.editIndex)
 router.post('/contatoCreate', loginRequire, ContatoController.register)
 router.post('/contato/edit/:id', loginRequire, ContatoController.edit)
+router.get('/contato/delete/:id', loginRequire, ContatoController.delete)
 
 
 
