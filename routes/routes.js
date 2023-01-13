@@ -17,8 +17,9 @@ router.post('/login', UserController.login)
 
 
 router.get('/contatos', loginRequire, ContatoController.index)
-router.get('/contatos/index/:id', loginRequire, ContatoController.edit)
+router.get('/contatos/index/:id', loginRequire, ContatoController.editIndex)
 router.post('/contatoCreate', loginRequire, ContatoController.register)
+router.post('/contato/edit/:id', loginRequire, ContatoController.edit)
 
 
 

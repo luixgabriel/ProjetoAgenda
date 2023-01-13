@@ -13,8 +13,11 @@
                     <h4>Contato:</h4>
                     <p>Crie ou edite seus contatos abaixo.</p>
                    
-                  
-                    <form action="/contatoCreate" method="post">
+                    <% if (contato._id) { %>
+                        <form action="/contato/edit/<%=contato._id%>" method="post">
+                    <% }else{ %>
+                        <form action="/contatoCreate" method="post">
+                    <% } %>
                         <%- include('includes/msgs.ejs') %>
                             <div class="form-group mb-2">
                                 <label>Nome:</label>

@@ -22,6 +22,11 @@ class Contato {
         this.errors = []
    }
 
+   async getContatos(contatos){
+        var contatos = await contatoModel.find().sort({criadoEm: -1})
+        return contatos
+   }
+
    async register(nome,sobrenome,email,tel){
         await this.validate(nome,sobrenome,email,tel)
         if(this.errors.length > 0){
@@ -29,7 +34,6 @@ class Contato {
         }else{
             var contato = await contatoModel.create({nome:nome, sobrenome: sobrenome, email: email, tel: tel})
         if(contato){
-            console.log(contato)
             return contato
         }
             return
@@ -62,6 +66,18 @@ class Contato {
         return user
     }
 
+    async edit(id,nome,sobrenome,email,tel){
+        await this.validate(nome,sobrenome,email,tel)
+        if(this.errors.length > 0){
+            return 
+        }else{
+            var contato = await contatoModel.findByIdAndUpdate(id, {nome:nome, sobrenome:sobrenome,email: email, tel: tel}, {new: true})
+            return contato
+        }
+        return
+    }
+
+    
 }
    
 

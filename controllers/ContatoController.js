@@ -35,7 +35,7 @@ class Contato {
         
     }
 
-    async edit(req,res){
+    async editIndex(req,res){
         var {id} = req.params
         if(!id){
             return res.render('404')
@@ -47,6 +47,36 @@ class Contato {
         }
 
         res.render('contato',{contato})
+    }
+
+    async edit(req,res){
+        var {id} = req.params
+        var{nome,sobrenome,email,tel} = req.body
+        if(!id){
+            return res.render('404')
+        }
+        try {
+            var contato = await contatoModel.edit(id,nome,sobrenome,email,tel)
+            if(contatoModel.errors.length > 0){
+                req.flash('errors', contatoModel.errors)
+                req.session.save(()=>{
+                    return res.redirect('back')
+                })
+               return
+            }
+
+            req.flash('success', 'Contato editado com sucesso')
+                req.session.save(()=>{
+                    return res.redirect('back')
+                })
+
+              return
+
+        } catch (error) {
+            console.log(error)
+            return
+        }
+        
     }
 
     
